@@ -3,6 +3,8 @@ let checkBox1 = document.getElementById('checkBox1');
 let checkBox2 = document.getElementById('checkBox2');
 let submitBtn = document.getElementById('submitBtn');
 let formBody = document.getElementById('formBody');
+let nochill = document.getElementById('nochill');
+let ceb = document.getElementById('ceb');
 
 //Find data in localstorage and show it
 
@@ -45,7 +47,6 @@ for(i=0;i<data.length;i++){
 
 submitBtn.onclick = () => {
     let data = JSON.parse(localStorage.getItem('datas'));
-
     let newdata = {
         time: '',
         check1: '',
@@ -54,7 +55,14 @@ submitBtn.onclick = () => {
 
     let date = new Date();
     // we need yesterday's date
-    let newdate = new Date(date.getTime()-24*60*60*1000)
+    let newdate = new Date(date.getTime()-24*60*60*1000);
+    // avoid over upload
+    if(data[data.length-1].time==newdate.toLocaleDateString()){
+        nochill.play();
+        alert('u have log this day!');
+        return;
+    }
+    
     
     let tr = document.createElement('tr');
     // add th node
@@ -100,7 +108,7 @@ submitBtn.onclick = () => {
     }
     formBody.appendChild(tr);
 
-    data.push(newdata);
+    //data.push(newdata);
     localStorage.setItem('datas',JSON.stringify(data));
-    
+    ceb.play();
 }

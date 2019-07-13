@@ -1,0 +1,20 @@
+ul {
+    text-align: left;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    list-style: none; 
+    background: rgb(250, 250, 250);
+    color: #333;
+}
+
+legend h1 {
+    font-weight: 500;
+    font-size: 3rem;
+    background: #333;
+    color: aliceblue;
+}
+
+button {
+    margin-top: 100px;
+}
