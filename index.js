@@ -1,6 +1,7 @@
 //Fetch variables
 let checkBox1 = document.getElementById('checkBox1');
 let checkBox2 = document.getElementById('checkBox2');
+let checkBox3 = document.getElementById('checkBox3');
 let submitBtn = document.getElementById('submitBtn');
 let formBody = document.getElementById('formBody');
 let nochill = document.getElementById('nochill');
@@ -40,6 +41,14 @@ for(i=0;i<data.length;i++){
     h42.innerHTML = data[i].check2;
     td2.appendChild(h42);
     tr.appendChild(td2);
+    
+    if(i != 0 && i != 1 && i != 2) {
+        let td3 = document.createElement('td');
+        let h43 = document.createElement('h4');
+        h43.innerHTML = data[i].check3;
+        td3.appendChild(h43);
+        tr.appendChild(td3);
+    }
     formBody.appendChild(tr);
 }
 
@@ -51,6 +60,7 @@ submitBtn.onclick = () => {
         time: '',
         check1: '',
         check2: '',
+        check3: ''
     }
 
     let date = new Date();
@@ -106,9 +116,24 @@ submitBtn.onclick = () => {
         td.appendChild(h4);
         tr.appendChild(td);
     }
+    if(checkBox3.checked == true) {
+        let td = document.createElement('td');
+        let h4 = document.createElement('h4');
+        newdata.check3 = '√';
+        h4.innerHTML = "√";
+        td.appendChild(h4);
+        tr.appendChild(td);
+    }else {
+        let td = document.createElement('td');
+        let h4 = document.createElement('h4');
+        newdata.check3 = '×';
+        h4.innerHTML = "×";
+        td.appendChild(h4);
+        tr.appendChild(td);
+    }
     formBody.appendChild(tr);
 
-    //data.push(newdata);
+    data.push(newdata);
     localStorage.setItem('datas',JSON.stringify(data));
     ceb.play();
 }
