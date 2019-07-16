@@ -18,3 +18,15 @@ legend h1 {
 button {
     margin-top: 100px;
 }
+
+@keyframes btnErr {
+    0% {transform: translateX(-25%);background: rgb(231, 82, 82);color: white;}
+    25% {transform: translateX(0%);background: rgb(231, 82, 82);color: white;}
+    50% {transform: translateX(25%);background: rgb(231, 82, 82);color: white;}
+    100% {transform: translateX(0%);background: rgb(231, 82, 82);color: white;}
+}
+
+.wrong {
+    animation: btnErr 750ms;
+
+}

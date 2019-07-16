@@ -50,7 +50,19 @@ for(i=0;i<data.length;i++){
         tr.appendChild(td3);
     }
     formBody.appendChild(tr);
-}
+};
+
+function showAlert(message,className) {
+    const div = document.createElement('div');
+    div.className = `alert alert-${className}`;
+    div.appendChild(document.createTextNode(message));
+    const container = document.querySelector('.container');
+    const list = document.querySelector('#listItems');
+    container.insertBefore(div,list);
+
+    // Vanish in 3 seconds
+    setTimeout(() => document.querySelector('.alert').remove(),3000);
+};
 
 //Button pushed, add data to localstorage and re-show it
 
@@ -69,10 +81,10 @@ submitBtn.onclick = () => {
     // avoid over upload
     if(data[data.length-1].time==newdate.toLocaleDateString()){
         nochill.play();
-        alert('u have log this day!');
+        submitBtn.classList.add('wrong');
+        showAlert('You have log your behaviors today!','danger')
         return;
     }
-    
     
     let tr = document.createElement('tr');
     // add th node
@@ -135,5 +147,6 @@ submitBtn.onclick = () => {
 
     data.push(newdata);
     localStorage.setItem('datas',JSON.stringify(data));
+    showAlert('Log successfully! Keep it up, pal.','success');
     ceb.play();
 }
