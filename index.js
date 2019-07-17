@@ -21,7 +21,7 @@ let ceb = document.getElementById('ceb');
 
 let data = JSON.parse(localStorage.getItem('datas'));
 
-for(i=0;i<data.length;i++){
+for(let i=0;i<data.length;i++){
     let tr = document.createElement('tr');
     // add th
     let th = document.createElement('th');
@@ -64,7 +64,7 @@ function showAlert(message,className) {
     setTimeout(() => document.querySelector('.alert').remove(),3000);
 };
 
-//Button pushed, add data to localstorage and re-show it
+// Button pushed, add data to localstorage and re-show it
 
 submitBtn.onclick = () => {
     let data = JSON.parse(localStorage.getItem('datas'));
@@ -83,9 +83,13 @@ submitBtn.onclick = () => {
         nochill.play();
         submitBtn.classList.add('wrong');
         showAlert('You have log your behaviors today!','danger')
+        setTimeout(() => {
+            submitBtn.classList.remove('wrong');
+        },600)
         return;
     }
-    
+    // add checkNumber to show the table line the right color
+    let checkNumber = 0;
     let tr = document.createElement('tr');
     // add th node
     
@@ -112,6 +116,7 @@ submitBtn.onclick = () => {
         h4.innerHTML = "×";
         td.appendChild(h4);
         tr.appendChild(td);
+        checkNumber+=1;
     }
     if(checkBox2.checked == true) {
         let td = document.createElement('td');
@@ -127,6 +132,7 @@ submitBtn.onclick = () => {
         h4.innerHTML = "×";
         td.appendChild(h4);
         tr.appendChild(td);
+        checkNumber+=1;
     }
     if(checkBox3.checked == true) {
         let td = document.createElement('td');
@@ -142,9 +148,19 @@ submitBtn.onclick = () => {
         h4.innerHTML = "×";
         td.appendChild(h4);
         tr.appendChild(td);
+        checkNumber+=1;
+    }
+    // check checkNumber to write the color
+    if(checkNumber==0){
+        tr.classList.add('table-success');
+    }
+    else if(checkNumber==3){
+        tr.classList.add('table-danger');
+    }
+    else {
+        tr.classList.add('table-warning');
     }
     formBody.appendChild(tr);
-
     data.push(newdata);
     localStorage.setItem('datas',JSON.stringify(data));
     showAlert('Log successfully! Keep it up, pal.','success');

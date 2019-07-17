@@ -1,3 +1,7 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
 ul {
     text-align: left;
     position: absolute;
@@ -9,10 +13,26 @@ ul {
 }
 
 legend h1 {
+    padding: 10px;
     font-weight: 500;
-    font-size: 3rem;
-    background: #333;
-    color: aliceblue;
+    font-size: 150%;
+    background-image: linear-gradient(to left, #12CBC4, #0652DD, #12CBC4);
+    color: #fff;
+    transition: 0.6s;
+    text-transform: uppercase;
+    background-size: 200%;
+}
+
+legend h1:hover {
+    background-position: right;
+}
+
+li {
+    font-size: 120%;
+}
+
+li input:hover {
+    cursor: pointer;
 }
 
 button {
@@ -20,13 +40,13 @@ button {
 }
 
 @keyframes btnErr {
-    0% {transform: translateX(-25%);background: rgb(231, 82, 82);color: white;}
+    0% {transform: translateX(-15%);background: rgb(231, 82, 82);color: white;}
     25% {transform: translateX(0%);background: rgb(231, 82, 82);color: white;}
-    50% {transform: translateX(25%);background: rgb(231, 82, 82);color: white;}
+    50% {transform: translateX(15%);background: rgb(231, 82, 82);color: white;}
     100% {transform: translateX(0%);background: rgb(231, 82, 82);color: white;}
 }
 
 .wrong {
-    animation: btnErr 750ms;
+    animation: btnErr 600ms;
 
 }
