@@ -7,8 +7,6 @@ let formBody = document.getElementById('formBody');
 let nochill = document.getElementById('nochill');
 let ceb = document.getElementById('ceb');
 
-//Find data in localstorage and show it
-
 // let data = [
 //     {
 //         time : '2019/7/10',
@@ -21,7 +19,9 @@ let ceb = document.getElementById('ceb');
 
 let data = JSON.parse(localStorage.getItem('datas'));
 
+// Show data from localstorage on the page.
 for(let i=0;i<data.length;i++){
+    let checkNumber = 0;
     let tr = document.createElement('tr');
     // add th
     let th = document.createElement('th');
@@ -33,21 +33,42 @@ for(let i=0;i<data.length;i++){
     let td1 = document.createElement('td');
     let h41 = document.createElement('h4');
     h41.innerHTML = data[i].check1;
+    if(data[i].check1 == '×'){
+        checkNumber+=1;
+    }
     td1.appendChild(h41);
     tr.appendChild(td1);
 
     let td2 = document.createElement('td');
     let h42 = document.createElement('h4');
     h42.innerHTML = data[i].check2;
+    if(data[i].check2 == '×'){
+        checkNumber+=1;
+    }
     td2.appendChild(h42);
     tr.appendChild(td2);
     
-    if(i != 0 && i != 1 && i != 2) {
-        let td3 = document.createElement('td');
-        let h43 = document.createElement('h4');
-        h43.innerHTML = data[i].check3;
-        td3.appendChild(h43);
-        tr.appendChild(td3);
+    let td3 = document.createElement('td');
+    let h43 = document.createElement('h4');
+    h43.innerHTML = data[i].check3;
+    if(data[i].check3 == '×'){
+        checkNumber+=1;
+    }
+    td3.appendChild(h43);
+    tr.appendChild(td3);
+    
+    // check checkNumber to write the color
+    if(checkNumber==0){
+        tr.classList.add('table-success');
+    }
+    else if(checkNumber==2){
+        tr.classList.add('table-warning');
+    }
+    else if(checkNumber==3){
+        tr.classList.add('table-danger');
+    }
+    else {
+        tr.classList.add('table-info');
     }
     formBody.appendChild(tr);
 };
@@ -88,8 +109,7 @@ submitBtn.onclick = () => {
         },600)
         return;
     }
-    // add checkNumber to show the table line the right color
-    let checkNumber = 0;
+    
     let tr = document.createElement('tr');
     // add th node
     
@@ -116,7 +136,7 @@ submitBtn.onclick = () => {
         h4.innerHTML = "×";
         td.appendChild(h4);
         tr.appendChild(td);
-        checkNumber+=1;
+        
     }
     if(checkBox2.checked == true) {
         let td = document.createElement('td');
@@ -132,7 +152,6 @@ submitBtn.onclick = () => {
         h4.innerHTML = "×";
         td.appendChild(h4);
         tr.appendChild(td);
-        checkNumber+=1;
     }
     if(checkBox3.checked == true) {
         let td = document.createElement('td');
@@ -148,21 +167,12 @@ submitBtn.onclick = () => {
         h4.innerHTML = "×";
         td.appendChild(h4);
         tr.appendChild(td);
-        checkNumber+=1;
     }
-    // check checkNumber to write the color
-    if(checkNumber==0){
-        tr.classList.add('table-success');
-    }
-    else if(checkNumber==3){
-        tr.classList.add('table-danger');
-    }
-    else {
-        tr.classList.add('table-warning');
-    }
+    
     formBody.appendChild(tr);
     data.push(newdata);
     localStorage.setItem('datas',JSON.stringify(data));
     showAlert('Log successfully! Keep it up, pal.','success');
     ceb.play();
+    location.reload();
 }

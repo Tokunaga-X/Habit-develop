@@ -1,43 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
 }
 
-ul {
+fieldset {
+    background: #fff;
+}
+
+fieldset ul {
     text-align: left;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
+    padding-left: 50%;
+    transform: translateX(-7%);
     list-style: none; 
-    background: rgb(250, 250, 250);
     color: #333;
 }
 
+fieldset ul li {
+    font-size: 140%;
+}
+
+fieldset ul li input:hover {
+    cursor: pointer;
+}
+
 legend h1 {
-    padding: 10px;
-    font-weight: 500;
-    font-size: 150%;
+    text-align: center;
+    padding: 10px; 
     background-image: linear-gradient(to left, #12CBC4, #0652DD, #12CBC4);
+    background-size: 200%;
+    font-weight: bold;
+    font-size: 150%;
+    text-transform: uppercase;
     color: #fff;
     transition: 0.6s;
-    text-transform: uppercase;
-    background-size: 200%;
 }
 
 legend h1:hover {
     background-position: right;
 }
 
-li {
-    font-size: 120%;
+
+.formTip {
+    background: lightgray;
 }
 
-li input:hover {
-    cursor: pointer;
+.formTip ul{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
 }
 
-button {
-    margin-top: 100px;
+.formTip ul li {
+    display: flex;
+    padding: 10px;
 }
+
+.formTip ul li p{
+    margin-left: 5px;
+    font-size: 60%;
+    font-weight: bold;
+}
+
+.colorArea1,
+.colorArea2,
+.colorArea3,
+.colorArea4 {
+    width: 100px;
+    height: 20px;
+}
+
+.colorArea1 {
+    background: #008cba;
+}
+.colorArea2 {
+    background: #5bc0de;
+}
+.colorArea3 {
+    background: #E99002;
+}
+.colorArea4 {
+    background: #F04124;
+}
+
+
 
 @keyframes btnErr {
     0% {transform: translateX(-15%);background: rgb(231, 82, 82);color: white;}
