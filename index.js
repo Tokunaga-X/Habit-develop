@@ -174,5 +174,5 @@ submitBtn.onclick = () => {
     localStorage.setItem('datas',JSON.stringify(data));
     showAlert('Log successfully! Keep it up, pal.','success');
     ceb.play();
-    location.reload();
+    setTimeout(() => {location.reload()},3000)
 }
