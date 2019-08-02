@@ -7,17 +7,21 @@ let formBody = document.getElementById('formBody');
 let nochill = document.getElementById('nochill');
 let ceb = document.getElementById('ceb');
 
-// let data = [
-//     {
-//         time : '2019/7/10',
-//         check1 : '√',
-//         check2 : '×',
 
-//     },
-// ]
-// localStorage.setItem('datas',JSON.stringify(data));
 
 let data = JSON.parse(localStorage.getItem('datas'));
+
+// new website/computer, new Array
+if(data){
+    let data = [
+            {
+                time : '2019/7/10',
+                check1 : '√',
+                check2 : '×',
+            },
+        ]
+    localStorage.setItem('datas',JSON.stringify(data));
+}
 
 // Show data from localstorage on the page.
 for(let i=0;i<data.length;i++){
