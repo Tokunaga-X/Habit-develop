@@ -8,11 +8,10 @@ let nochill = document.getElementById('nochill');
 let ceb = document.getElementById('ceb');
 
 
-
 let data = JSON.parse(localStorage.getItem('datas'));
 
 // new website/computer, new Array
-if(data){
+if(!data){
     let data = [
             {
                 time : '2019/7/10',
